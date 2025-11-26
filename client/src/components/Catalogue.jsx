@@ -2,14 +2,17 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Catalogue = ({catalogue}) => (
-    <tr key={catalogue.id}>
-        <td>{catalogue.name}</td>
-        <td>{catalogue.category}</td>
-        <td>{catalogue.servicedBy}</td>
-        <td>{catalogue.price}</td>
-        <td>{catalogue.availability}</td>
-        <td>{catalogue.description}</td>
-    </tr>
+    <div className="card" key={catalogue.id}>
+        <div className="card-header">
+            {catalogue.category}
+        </div>
+        <div className="card-body">
+            <h5 className="card-title">{catalogue.name}</h5>
+            <p className="card-text">{catalogue.description}</p>
+            <a href="#" className="btn btn-primary">ADD</a> &nbsp;
+            <a href="#" className="btn btn-primary">{catalogue.servicedBy}</a>
+        </div>
+    </div>
 );
 
 export default function ServiceCatalogue() {
@@ -42,7 +45,8 @@ export default function ServiceCatalogue() {
         <>
             <h1>Service Catalogues</h1>
             <div>
-                <table>
+                {serviceCatalogues()}
+                {/* <table>
                     <thead>
                         <tr>
                             <th>Name</th>
@@ -56,7 +60,7 @@ export default function ServiceCatalogue() {
                     <tbody>
                         {serviceCatalogues()}
                     </tbody>
-                </table>
+                </table> */}
             </div>
         </>
     );

@@ -8,6 +8,10 @@ import App from "./App";
 import Catalogue from "./components/Catalogue";
 import "./index.css";
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
+
 const router = createBrowserRouter([
   {
     path: "/",
