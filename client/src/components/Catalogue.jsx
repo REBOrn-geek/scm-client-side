@@ -2,15 +2,19 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Catalogue = ({catalogue}) => (
-    <div className="card" key={catalogue.id}>
-        <div className="card-header">
-            {catalogue.category}
-        </div>
-        <div className="card-body">
-            <h5 className="card-title">{catalogue.name}</h5>
-            <p className="card-text">{catalogue.description}</p>
-            <a href="#" className="btn btn-primary">ADD</a> &nbsp;
-            <a href="#" className="btn btn-primary">{catalogue.servicedBy}</a>
+    <div className="col-3">
+        <div className="card m-1" key={catalogue.id}>
+            <div className="card-header text-center">
+                <h3><i class="fa-regular fa-hand"></i></h3>
+                <h4 className="strong">{catalogue.category}</h4>
+                <h6 className="text-warning"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i></h6>
+            </div>
+            <div className="card-body">
+                <h5 className="card-title text-center">{catalogue.name}</h5>
+                <p className="card-text">{catalogue.description}</p>
+                <a href="#" className="btn btn-primary"><i class="fa-solid fa-plus"></i></a> &nbsp;
+                <a href="#" className="btn btn-primary"><i class="fa-solid fa-address-card"></i></a>
+            </div>
         </div>
     </div>
 );
@@ -43,24 +47,11 @@ export default function ServiceCatalogue() {
 
     return  (
         <>
-            <h1>Service Catalogues</h1>
-            <div>
-                {serviceCatalogues()}
-                {/* <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Category</th>
-                            <th>Staff</th>
-                            <th>Service Price</th>
-                            <th>Status</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {serviceCatalogues()}
-                    </tbody>
-                </table> */}
+            <h1 className="text-center">Service Catalogues</h1>
+            <div className="container-sm text-bg-info p-1">
+                <div className="row align-items-start">
+                    {serviceCatalogues()}
+                </div>
             </div>
         </>
     );
