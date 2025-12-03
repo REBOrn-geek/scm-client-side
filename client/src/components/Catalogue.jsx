@@ -5,20 +5,24 @@ const Catalogue = ({catalogue}) => (
     <div className="col-3">
         <div className="card m-1" key={catalogue.id}>
             <div className="text-end">
-                <a href="#" className="btn text-primary m-1 p-0"><i class="fa-solid fa-pencil"></i></a>
+                <a href="#" className="btn text-primary m-1 pe-1 border-end rounded-0"><i class="fa-solid fa-pencil"></i></a>
                 <a href="#" className="btn text-danger me-1 p-0"><i class="fa-solid fa-trash-can"></i></a>
             </div>
             <div className="card-header text-center">
-                <h3><i class="fa-regular fa-hand"></i></h3>
-                <h4 className="strong">{catalogue.category}</h4>
-                <h3 className="text-primary">₱{catalogue.price}</h3>
+                {serviceStatus(catalogue.availability, catalogue.name)}
+                <div className="hstack gap-3 m-0">
+                    <h5>{categoryIcon(catalogue.category)}</h5>
+                    <h4 className="strong" hidden>{catalogue.category}</h4>
+                    <h3 className="text-primary ms-auto">₱{catalogue.price}</h3>
+                </div>
             </div>
             <div className="card-body">
-                {serviceStatus(catalogue.availability, catalogue.name)}
-                <h6 className="text-warning"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i></h6>
                 <p className="card-text text-truncate">{catalogue.description}</p>
-                <a href="#" className="btn btn-success"><i class="fa-solid fa-cart-plus"></i></a> &nbsp;
-                <a href="#" className="btn btn-info"><i class="fa-solid fa-address-card"></i></a>
+                <div className="hstack gap-3 m-0">    
+                    <h6 className="text-warning"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i></h6>            
+                    <a href="#" className="btn btn-outline-success ms-auto"><i class="fa-solid fa-cart-plus"></i></a>
+                    <a href="#" className="btn btn-outline-info"><i class="fa-solid fa-address-card"></i></a>
+                </div>
             </div>
         </div>
     </div>
@@ -26,9 +30,17 @@ const Catalogue = ({catalogue}) => (
 
 function serviceStatus(status, name) {
     if (status !== "Available") {
-        return <h5 className="card-title text-center text-danger lead text-decoration-line-through">{name}</h5>;
+        return <h3 className="card-title text-center text-danger lead text-decoration-line-through">{name}</h3>;
     } else {
-        return <h5 className="card-title text-center lead">{name}</h5>;
+        return <h3 className="card-title text-center lead">{name}</h3>;
+    }
+}
+
+function categoryIcon(category) {
+    if (category == "nail") {
+        return <i class="fa-regular fa-hand"></i>;
+    } else {
+        return <i class="fa-regular fa-face-grin-beam"></i>;
     }
 }
 
