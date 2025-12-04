@@ -4,11 +4,14 @@ import { Link } from "react-router-dom";
 const Catalogue = ({catalogue}) => (
     <div className="col-3">
         <div className="card m-1" key={catalogue.id}>
-            <div className="text-end">
+            <div className="text-end" hidden>
                 <a href="#" className="btn text-primary m-1 pe-1 border-end rounded-0"><i class="fa-solid fa-pencil"></i></a>
                 <a href="#" className="btn text-danger me-1 p-0"><i class="fa-solid fa-trash-can"></i></a>
             </div>
             <div className="card-header text-center">
+                <div className="text-end m-1">
+                    <input className="form-check-input ms-auto" type="checkbox" />
+                </div>
                 {serviceStatus(catalogue.availability, catalogue.name)}
                 <div className="hstack gap-3 m-0">
                     <h5>{categoryIcon(catalogue.category)}</h5>
@@ -20,8 +23,8 @@ const Catalogue = ({catalogue}) => (
                 <p className="card-text text-truncate">{catalogue.description}</p>
                 <div className="hstack gap-3 m-0">    
                     <h6 className="text-warning"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i></h6>            
-                    <a href="#" className="btn btn-outline-success ms-auto"><i class="fa-solid fa-cart-plus"></i></a>
-                    <a href="#" className="btn btn-outline-info"><i class="fa-solid fa-address-card"></i></a>
+                    <a href="#" className="btn btn-outline-success ms-auto" hidden><i class="fa-solid fa-cart-plus"></i></a>
+                    <a href="#" className="btn btn-outline-info ms-auto"><i class="fa-solid fa-address-card"></i></a>
                 </div>
             </div>
         </div>
@@ -30,9 +33,9 @@ const Catalogue = ({catalogue}) => (
 
 function serviceStatus(status, name) {
     if (status !== "Available") {
-        return <h3 className="card-title text-center text-danger lead text-decoration-line-through">{name}</h3>;
+        return <h2 className="card-title text-center text-danger lead text-decoration-line-through">{name}</h2>;
     } else {
-        return <h3 className="card-title text-center lead">{name}</h3>;
+        return <h2 className="card-title text-center lead">{name}</h2>;
     }
 }
 
@@ -73,7 +76,7 @@ export default function ServiceCatalogue() {
     return  (
         <>
             <h1 className="text-center">Service Catalogues</h1>
-            <div className="container-sm text-bg-info p-1">
+            <div className="container-sm text-bg-light p-1">
                 <div className="row align-items-start">
                     {serviceCatalogues()}
                 </div>
