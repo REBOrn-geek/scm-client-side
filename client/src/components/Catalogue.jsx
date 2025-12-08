@@ -76,6 +76,9 @@ export default function ServiceCatalogue() {
     return  (
         <>
             <h1 className="text-center">Service Catalogues</h1>
+            <div className="container-sm text-bg-dark p-1 hstack gap-3">
+                <a href="/create" className="text-warning ms-auto">Create New Service</a>
+            </div>
             <div className="container-sm text-bg-light p-1">
                 <div className="row align-items-start">
                     {serviceCatalogues()}

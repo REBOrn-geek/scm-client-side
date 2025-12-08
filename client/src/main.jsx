@@ -4,8 +4,11 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+
 import App from "./App";
 import Catalogue from "./components/Catalogue";
+import FormCatalogue from "./components/CatalogueForm";
+
 import "./index.css";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -23,6 +26,16 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "/create",
+    element: < App />,
+    children: [
+      {
+        path: "/create",
+        element: <FormCatalogue/>
+      }
+    ]
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
