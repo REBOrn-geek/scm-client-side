@@ -9,15 +9,15 @@ export default function ServiceCreation() {
                 {/* Service Name */}
                 <div className="input-group">
                     <span className="input-group-text" id="inputGroup-sizing-default">Service Name</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
+                    <input id="name" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
                 </div>
                 {/* Service Price */}
                 <div className="input-group">
                     <span className="input-group-text">₱</span>
-                    <input type="text" className="form-control" aria-label="Dollar amount (with dot and two decimal places)"/>
+                    <input id="price" type="text" className="form-control" aria-label="Dollar amount (with dot and two decimal places)"/>
                 </div>
                 {/* Service Category */}
-                <select className="form-select" aria-label="Default select example">
+                <select id="category" className="form-select" aria-label="Default select example">
                     <option selected>Category</option>
                     <option value="employee0">nail</option>
                     <option value="employee1">hair</option>
@@ -25,7 +25,7 @@ export default function ServiceCreation() {
                 </select>
 
                 {/* Staff Available */}
-                <select className="form-select" aria-label="Default select example">
+                <select id="servicedBy" className="form-select" aria-label="Default select example">
                     <option selected>Staff</option>
                     <option value="employee0">employee0</option>
                     <option value="employee1">employee2</option>
@@ -34,13 +34,13 @@ export default function ServiceCreation() {
 
                 {/* Service Availability */}
                 <div className="form-check">
-                    <input className="form-check-input" type="checkbox" value="" id="checkAvailability"/>
-                    <label className="form-check-label" for="checkAvailability">
+                    <input className="form-check-input" type="checkbox" value="" id="availability"/>
+                    <label className="form-check-label" for="availability">
                         Available
                     </label>
                 </div>
             </div>
-            <div className="container-sm text-bg-light p-1 rounded-3 mt-1">                
+            <div id="description" className="container-sm text-bg-light p-1 rounded-3 mt-1">                
                 <div className="mb-3">
                     <label for="exampleFormControlTextarea1" className="form-label">Service Description</label>
                     <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
