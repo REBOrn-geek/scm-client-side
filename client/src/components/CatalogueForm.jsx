@@ -3,11 +3,16 @@ import { Link } from "react-router-dom";
 
 
 export default function ServiceCreation() {
-
+    const [form, setForm] = useState({
+        name: "",
+        category: "",
+        servicedBy: "",
+        price: "",
+        availability: "",
+        description: "",
+    });
     const [status, setStatus] = useState('Unavailable');
     // useEffect(() => {
-    //     // document.getElementById()
-    //     setStatus('Unavailable');
     // });
 
     const changeStatus = () => {
@@ -16,6 +21,17 @@ export default function ServiceCreation() {
          }else{
             setStatus('Unavailable');
          }
+    }
+
+    async function onCreate(e){
+        try {
+            
+        } catch (error) {
+            console.error('A problem occured with your creation of new service catalogue: ', error);
+        }finally{
+            setForm({name: "", category: "", servicedBy: "", price: "", availability: "", description: "",});
+            Navigate("/");
+        }
     }
 
     return  (
