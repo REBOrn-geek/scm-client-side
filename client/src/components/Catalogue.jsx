@@ -5,8 +5,8 @@ const Catalogue = ({catalogue}) => (
     <div className="col-3">
         <div className="card m-1" key={catalogue.id}>
             <div className="text-end" hidden>
-                <a href="#" className="btn text-primary m-1 pe-1 border-end rounded-0"><i class="fa-solid fa-pencil"></i></a>
-                <a href="#" className="btn text-danger me-1 p-0"><i class="fa-solid fa-trash-can"></i></a>
+                <a href="#" className="btn text-primary m-1 pe-1 border-end rounded-0"><i className="fa-solid fa-pencil"></i></a>
+                <a href="#" className="btn text-danger me-1 p-0"><i className="fa-solid fa-trash-can"></i></a>
             </div>
             <div className="card-header text-center">
                 <div className="text-end m-1">
@@ -22,9 +22,9 @@ const Catalogue = ({catalogue}) => (
             <div className="card-body">
                 <p className="card-text text-truncate">{catalogue.description}</p>
                 <div className="hstack gap-3 m-0">    
-                    <h6 className="text-warning"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i></h6>            
-                    <a href="#" className="btn btn-outline-success ms-auto" hidden><i class="fa-solid fa-cart-plus"></i></a>
-                    <a href="#" className="btn btn-outline-info ms-auto"><i class="fa-solid fa-address-card"></i></a>
+                    <h6 className="text-warning"><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-regular fa-star"></i></h6>            
+                    <a href="#" className="btn btn-outline-success ms-auto" hidden><i className="fa-solid fa-cart-plus"></i></a>
+                    <a href="#" className="btn btn-outline-info ms-auto"><i className="fa-solid fa-address-card"></i></a>
                 </div>
             </div>
         </div>
@@ -41,9 +41,9 @@ function serviceStatus(status, name) {
 
 function categoryIcon(category) {
     if (category == "nail") {
-        return <i class="fa-regular fa-hand"></i>;
+        return <i className="fa-regular fa-hand"></i>;
     } else {
-        return <i class="fa-regular fa-face-grin-beam"></i>;
+        return <i className="fa-regular fa-face-grin-beam"></i>;
     }
 }
 
