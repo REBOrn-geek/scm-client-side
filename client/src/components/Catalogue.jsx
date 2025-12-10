@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Catalogue = ({catalogue}) => (
     <div className="col-3">
         <div className="card m-1" key={catalogue.id}>
-            <div className="text-end" hidden>
+            <div className="text-end">
                 <a href="#" className="btn text-primary m-1 pe-1 border-end rounded-0"><i className="fa-solid fa-pencil"></i></a>
                 <a href="#" className="btn text-danger me-1 p-0"><i className="fa-solid fa-trash-can"></i></a>
             </div>
