@@ -18,21 +18,21 @@ export default function ServiceCreation() {
     //     return;
     // });
 
-    const changeStatus = () => {
-         if (status === 'Available'){
-            setStatus('Unavailable') 
-            return updateForm({ availability: status});
-         }else {
-            setStatus('Available');
-            return updateForm({ availability: status});
-         }
-    }
+    function changeStatus() {
+        let s;
+        if (status === 'Available'){            
+            s = 'Unavailable';
+        }else {            
+           s = 'Available';
+        }
+        return setStatus(s);
+    };
 
     function updateForm (value) {
         return setForm((prev) => {
             return { ...prev, ...value };
         });
-    }
+    };
 
     async function onSubmit(e){  
         e.preventDefault();
@@ -56,7 +56,7 @@ export default function ServiceCreation() {
             setForm({name: "", category: "", servicedBy: "", price: "", availability: status, description: "",});
             // Navigate("/");
         }
-    }
+    };
 
     return  (
         <>
@@ -68,7 +68,7 @@ export default function ServiceCreation() {
                         {status}
                     </label>
                     <div className="form-check form-switch">
-                        <input className="form-check-input" type="checkbox" role="switch" id="availability" name="availability" value={status} onClick={changeStatus}/>
+                        <input className="form-check-input" type="checkbox" role="switch" id="availability" name="availability" value={status} onClick={changeStatus} onChange={(e) => updateForm({ availability: status})}/>
                     </div>                
                 </div>
                 <div className="container-sm text-bg-dark p-2 hstack gap-2 border-warning border-5 rounded-3">
@@ -113,9 +113,9 @@ export default function ServiceCreation() {
                     {/* <button type="button" className="btn btn-outline-success rounded-pill" onClick={onCreate}>Create</button> */}
                 </div>
             </form>
-            {/* <div>
+            <div>
                 {console.log(form)}
-            </div> */}
+            </div>
         </>
     );
 }

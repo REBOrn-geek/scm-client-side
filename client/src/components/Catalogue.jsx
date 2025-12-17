@@ -1,26 +1,26 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const Catalogue = ({catalogue}) => (
+const Catalogue = (props) => (
     <div className="col-3">
-        <div className="card m-1" key={catalogue.id}>
+        <div className="card m-1" key={props.catalogue.id}>
             <div className="text-end">
                 <a href="#" className="btn text-primary m-1 pe-1 border-end rounded-0"><i className="fa-solid fa-pencil"></i></a>
-                <a href="#" className="btn text-danger me-1 p-0"><i className="fa-solid fa-trash-can"></i></a>
+                <button className="btn text-danger me-1 p-0" type="button" onClick={() => {props.deleteService(props.catalogue.id);}}><i className="fa-solid fa-trash-can"></i></button>
             </div>
             <div className="card-header text-center">
                 <div className="text-end m-1">
                     <input className="form-check-input ms-auto" type="checkbox" />
                 </div>
-                {serviceStatus(catalogue.availability, catalogue.name)}
+                {serviceStatus(props.catalogue.availability, props.catalogue.name)}
                 <div className="hstack gap-3 m-0">
-                    <h5>{categoryIcon(catalogue.category)}</h5>
-                    <h4 className="strong" hidden>{catalogue.category}</h4>
-                    <h3 className="text-primary ms-auto">₱{catalogue.price}</h3>
+                    <h5>{categoryIcon(props.catalogue.category)}</h5>
+                    <h4 className="strong" hidden>{props.catalogue.category}</h4>
+                    <h3 className="text-primary ms-auto">₱{props.catalogue.price}</h3>
                 </div>
             </div>
             <div className="card-body">
-                <p className="card-text text-truncate">{catalogue.description}</p>
+                <p className="card-text text-truncate">{props.catalogue.description}</p>
                 <div className="hstack gap-3 m-0">    
                     <h6 className="text-warning"><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-regular fa-star"></i></h6>            
                     <a href="#" className="btn btn-outline-success ms-auto" hidden><i className="fa-solid fa-cart-plus"></i></a>
@@ -64,11 +64,17 @@ export default function ServiceCatalogue() {
         getCatalogues();
         return;
     }, [catalogues.lenght]);
+    
+    async function deleteService(id){
+        await fetch(`http://localhost:3000/v1/services/${id}`, { method: "DELETE"});
+        const newCatalogues = catalogues.filter((rm) => rm._id !== id);
+        setCatalogues(newCatalogues);
+    }
 
     function serviceCatalogues() {
         return catalogues.map((catalogue) => {
             return (
-                <Catalogue catalogue={catalogue} key={catalogue.id}/>
+                <Catalogue catalogue={catalogue} deleteService={() => deleteService(catalogue.id)} key={catalogue.id}/>
             );
         });
     }
