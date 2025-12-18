@@ -5,7 +5,8 @@ const Catalogue = (props) => (
     <div className="col-3">
         <div className="card m-1" key={props.catalogue.id}>
             <div className="text-end">
-                <a href="#" className="btn text-primary m-1 pe-1 border-end rounded-0"><i className="fa-solid fa-pencil"></i></a>
+                <Link   className="btn text-primary m-1 pe-1 border-end rounded-0" to={`/edit/${props.catalogue.id}`}><i className="fa-solid fa-pencil"></i></Link>
+                {/* <a href="#" className="btn text-primary m-1 pe-1 border-end rounded-0"></a> */}
                 <button className="btn text-danger me-1 p-0" type="button" onClick={() => {props.deleteService(props.catalogue.id);}}><i className="fa-solid fa-trash-can"></i></button>
             </div>
             <div className="card-header text-center">

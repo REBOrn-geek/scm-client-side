@@ -35,6 +35,16 @@ const router = createBrowserRouter([
         element: <FormCatalogue/>
       }
     ]
+  },
+  {
+    path: "/edit/:id",
+    element: < App />,
+    children: [
+      {
+        path: "/edit/:id",
+        element: <FormCatalogue/>
+      }
+    ]
   }
 ]);
 

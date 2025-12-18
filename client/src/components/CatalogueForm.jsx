@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 
@@ -11,12 +12,33 @@ export default function ServiceCreation() {
         availability: "Unavailable",
         description: "",
     });
-
+    const params = useParams();
+    const navigate = useNavigate();
     const [status, setStatus] = useState('Unavailable');
-    // useEffect(() => {
-    //     console.log(form);
-    //     return;
-    // });
+    
+    useEffect(() => {
+        async function fetchData() {
+            const id = params.id?.toString() ||  undefined;
+            if(!id) return;
+            const response = await fetch(
+                `http://localhost:3000/v1/services/${params.id.toString()}`
+            );
+            if (!response.ok) {
+                const message = `An error has occured: ${response.statusText}`
+                console.log(message);
+                return;
+            }
+            const catalogue = await response.json();
+            if (!catalogue) {
+                console.warm(`Record with id ${id} not found!`);
+                navigate("/");
+                return;
+            }
+            setForm(catalogue.service);
+        }
+        fetchData();
+        return;
+    }, [params.id, navigate]);
 
     function changeStatus() {
         let s;
