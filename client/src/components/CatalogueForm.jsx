@@ -76,7 +76,7 @@ export default function ServiceCreation() {
             console.error('A problem occured with your creation of new service catalogue: ', error);
         }finally{
             setForm({name: "", category: "", servicedBy: "", price: "", availability: status, description: "",});
-            // Navigate("/");
+            navigate("/");
         }
     };
 
