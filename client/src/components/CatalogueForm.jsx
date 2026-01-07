@@ -132,7 +132,7 @@ export default function ServiceCreation() {
                     </div>
                 </div>
                 <div className="container-sm hstack p-1 gap-1 rounded-3">               
-                    <button type="button" className="btn btn-outline-warning ms-auto rounded-pill">Cancel</button> 
+                    <Link className="btn btn-outline-warning ms-auto rounded-pill" to={`/`}>Cancel</Link>
                     <input type="submit" className="btn btn-outline-success rounded-pill" value={formPage}/>
                     {/* <button type="button" className="btn btn-outline-success rounded-pill" onClick={onCreate}>Create</button> */}
                 </div>
