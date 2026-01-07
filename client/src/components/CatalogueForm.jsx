@@ -14,12 +14,14 @@ export default function ServiceCreation() {
     });
     const params = useParams();
     const navigate = useNavigate();
+    const [formPage, setFormPage] = useState('Create');
     const [status, setStatus] = useState('Unavailable');
     
     useEffect(() => {
         async function fetchData() {
             const id = params.id?.toString() ||  undefined;
             if(!id) return;
+            setFormPage('Update');
             const response = await fetch(
                 `http://localhost:3000/v1/services/${params.id.toString()}`
             );
@@ -131,7 +133,7 @@ export default function ServiceCreation() {
                 </div>
                 <div className="container-sm hstack p-1 gap-1 rounded-3">               
                     <button type="button" className="btn btn-outline-warning ms-auto rounded-pill">Cancel</button> 
-                    <input type="submit" className="btn btn-outline-success rounded-pill" value="Create"/>
+                    <input type="submit" className="btn btn-outline-success rounded-pill" value={formPage}/>
                     {/* <button type="button" className="btn btn-outline-success rounded-pill" onClick={onCreate}>Create</button> */}
                 </div>
             </form>
