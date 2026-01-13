@@ -16,6 +16,7 @@ export default function ServiceCreation() {
     const navigate = useNavigate();
     const [formPage, setFormPage] = useState('Create');
     const [status, setStatus] = useState('Unavailable');
+    const [statusBut, setStatusBut] = useState(false);
     
     useEffect(() => {
         async function fetchData() {
@@ -36,6 +37,11 @@ export default function ServiceCreation() {
                 navigate("/");
                 return;
             }
+            if (catalogue.service.availability === 'Available'){     
+                setStatusBut(true);
+            }else {           
+            setStatusBut(false);
+            }  
             setForm(catalogue.service);
         }
         fetchData();
@@ -46,10 +52,11 @@ export default function ServiceCreation() {
         let s;
         if (status === 'Available'){            
             s = 'Unavailable';
+            setStatusBut(false);
         }else {            
            s = 'Available';
-        }
-        console.log("At changeStatus function output: ", s)        
+           setStatusBut(true);
+        }       
         updateForm({ availability: s});
         return setStatus(s);
     };
@@ -91,11 +98,10 @@ export default function ServiceCreation() {
                 <div className="container-sm text-bg-light p-2 hstack">
                     {/* Service Availability */}
                     <div className="form-check form-switch">
-                        <input className="form-check-input" type="checkbox" role="switch" id="availability" name="availability" value={form.availability} onClick={changeStatus}/>
+                        <input className="form-check-input" type="checkbox" role="switch" id="availability" name="availability" value={form.availability} onClick={changeStatus} checked={statusBut}/>
                     </div>                     
                     <label className="form-check-label pe-2 ms-auto" htmlFor="availability">
-                        {status}
-                        {console.log(status)}
+                        {form.availability}
                     </label>               
                 </div>
                 <div className="container-sm text-bg-dark p-2 hstack gap-2 border-warning border-5 rounded-3">
