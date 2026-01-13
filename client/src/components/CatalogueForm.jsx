@@ -9,7 +9,7 @@ export default function ServiceCreation() {
         category: "",
         servicedBy: "",
         price: "",
-        availability: "Unavailable",
+        availability: "",
         description: "",
     });
     const params = useParams();
@@ -49,6 +49,8 @@ export default function ServiceCreation() {
         }else {            
            s = 'Available';
         }
+        console.log("At changeStatus function output: ", s)        
+        updateForm({ availability: s});
         return setStatus(s);
     };
 
@@ -87,13 +89,14 @@ export default function ServiceCreation() {
             <h1 className="text-center mb-3">Service Creation</h1>
             <form onSubmit={onSubmit}>
                 <div className="container-sm text-bg-light p-2 hstack">
-                    {/* Service Availability */}                    
+                    {/* Service Availability */}
+                    <div className="form-check form-switch">
+                        <input className="form-check-input" type="checkbox" role="switch" id="availability" name="availability" value={form.availability} onClick={changeStatus}/>
+                    </div>                     
                     <label className="form-check-label pe-2 ms-auto" htmlFor="availability">
                         {status}
-                    </label>
-                    <div className="form-check form-switch">
-                        <input className="form-check-input" type="checkbox" role="switch" id="availability" name="availability" value={status} onClick={changeStatus} onChange={(e) => updateForm({ availability: status})}/>
-                    </div>                
+                        {console.log(status)}
+                    </label>               
                 </div>
                 <div className="container-sm text-bg-dark p-2 hstack gap-2 border-warning border-5 rounded-3">
                     {/* Service Name */}
