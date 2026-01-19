@@ -9,7 +9,7 @@ export default function ServiceCreation() {
         category: "",
         servicedBy: "",
         price: "",
-        availability: "",
+        availability: "Unavailable",
         description: "",
     });
     const params = useParams();
@@ -93,7 +93,7 @@ export default function ServiceCreation() {
 
     return  (
         <>
-            <h1 className="text-center mb-3">Service Creation</h1>
+            <h1 className="text-center mb-3">Service {formPage}</h1>
             <form onSubmit={onSubmit}>
                 <div className="container-sm text-bg-light p-2 hstack">
                     {/* Service Availability */}

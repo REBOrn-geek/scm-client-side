@@ -12,13 +12,13 @@ const Header = () => {
                 <a className="nav-link active" aria-current="page" href="#">Catalogue</a>
                 </li>
                 <li className="nav-item">
-                <a className="nav-link" href="#">Promotions</a>
+                <a className="nav-link" href="#" hidden>Promotions</a>
                 </li>
                 <li className="nav-item">
-                <a className="nav-link" href="#">Pricing</a>
+                <a className="nav-link" href="#" hidden>Pricing</a>
                 </li>
                 <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" hidden>
                     Dropdown link
                 </a>
                 <ul className="dropdown-menu">

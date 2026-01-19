@@ -68,15 +68,9 @@ export default function ServiceCatalogue() {
     }, [catalogues.lenght]);
     
     async function deleteService(id){
-        try {
-            await fetch(`http://localhost:3000/v1/services/${id}`, { method: "DELETE"});
-            const newCatalogues = catalogues.filter((rm) => rm._id !== id);
-            setCatalogues(newCatalogues);
-        } catch (error) {
-            console.error('A problem occured during deletion process: ', error);
-        } finally {
-            navigate("/");
-        }
+        await fetch(`http://localhost:3000/v1/services/${id}`, { method: "DELETE"});
+        const newCatalogues = catalogues.filter((rm) => rm._id !== id);
+        setCatalogues(newCatalogues);
     }
 
     function serviceCatalogues() {
