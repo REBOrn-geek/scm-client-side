@@ -12,6 +12,7 @@ export default function ServiceCreation() {
         availability: "Unavailable",
         description: "",
     });
+    const [isNew, setIsNew] = useState(true);
     const params = useParams();
     const navigate = useNavigate();
     const [formPage, setFormPage] = useState('Create');
@@ -23,6 +24,7 @@ export default function ServiceCreation() {
             const id = params.id?.toString() ||  undefined;
             if(!id) return;
             setFormPage('Update');
+            setIsNew(false);
             const response = await fetch(
                 `http://localhost:3000/v1/services/${params.id.toString()}`
             );
@@ -70,22 +72,36 @@ export default function ServiceCreation() {
     async function onSubmit(e){  
         e.preventDefault();
         const catalogue = { ...form };
+        const { id, ...newCatalogue } = catalogue;
+        console.log(newCatalogue);
+        //const id = params.id?.toString() ||  undefined;
         try {
             let response;
-            response = await fetch(`http://localhost:3000/v1/services`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(catalogue),
-            });
+            if (isNew) {                
+                response = await fetch(`http://localhost:3000/v1/services`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(catalogue),
+                });
+            } else {
+                alert("Successfully Updated!");
+                if(!id) return;
+                response = await fetch(`http://localhost:3000/v1/services/${params.id.toString()}`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },                    
+                    body: JSON.stringify(newCatalogue),
+                });
+            }
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             };
-            // console.log(catalogue);
         } catch (error) {
             console.error('A problem occured with your creation of new service catalogue: ', error);
-        }finally{
+        } finally {
             setForm({name: "", category: "", servicedBy: "", price: "", availability: status, description: "",});
             navigate("/");
         }
@@ -145,10 +161,17 @@ export default function ServiceCreation() {
                     <input type="submit" className="btn btn-outline-success rounded-pill" value={formPage}/>
                     {/* <button type="button" className="btn btn-outline-success rounded-pill" onClick={onCreate}>Create</button> */}
                 </div>
+                <div>
+                    <ul>
+                        <li>{form.name}</li>
+                        <li>₱ {form.price}</li>
+                        <li>{form.category}</li>
+                        <li>{form.servicedBy}</li>
+                        <li>{form.description}</li>
+                        <li>{params.id}</li>
+                    </ul>                    
+                </div>
             </form>
-            <div>
-                {console.log(form)}
-            </div>
         </>
     );
 }
