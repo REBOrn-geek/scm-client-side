@@ -26,7 +26,7 @@ const Catalogue = (props) => (
                 <div className="hstack gap-3 m-0">    
                     <h6 className="text-warning"><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-regular fa-star"></i></h6>            
                     <a href="#" className="btn btn-outline-success ms-auto" hidden><i className="fa-solid fa-cart-plus"></i></a>
-                    <a href="#" className="btn btn-outline-info ms-auto"><i className="fa-solid fa-address-card"></i></a>
+                    <a href="#" className="btn btn-outline-info ms-auto"><i className="fa-solid fa-address-card"></i>&nbsp;{props.catalogue.servicedBy}</a>
                 </div>
             </div>
         </div>
