@@ -16,9 +16,13 @@ const Catalogue = (props) => (
                 </div>
                 {serviceStatus(props.catalogue.availability, props.catalogue.name)}
                 <div className="hstack gap-3 m-0">
-                    <h5>{categoryIcon(props.catalogue.category)}</h5>
-                    <h4 className="strong" hidden>{props.catalogue.category}</h4>
-                    <h3 className="text-primary ms-auto">₱{props.catalogue.price}</h3>
+                    <div className="m-0 p-0 hstack gap-1">
+                        <h6>{categoryIcon(props.catalogue.category)}</h6>
+                        <h6 className="strong">{props.catalogue.category}</h6>
+                    </div>
+                    <div className="ms-auto">
+                        <h3 className="text-warning">₱&nbsp;{props.catalogue.price}</h3>
+                    </div>
                 </div>
             </div>
             <div className="card-body">
@@ -26,7 +30,7 @@ const Catalogue = (props) => (
                 <div className="hstack gap-3 m-0">    
                     <h6 className="text-warning"><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-regular fa-star"></i></h6>            
                     <a href="#" className="btn btn-outline-success ms-auto" hidden><i className="fa-solid fa-cart-plus"></i></a>
-                    <a href="#" className="btn btn-outline-info ms-auto"><i className="fa-solid fa-address-card"></i>&nbsp;{props.catalogue.servicedBy}</a>
+                    <a href="#" className="btn btn-outline-warning ms-auto"><i class="fa-solid fa-user-nurse"></i>&nbsp;{props.catalogue.servicedBy}</a>
                 </div>
             </div>
         </div>
@@ -42,11 +46,23 @@ function serviceStatus(status, name) {
 }
 
 function categoryIcon(category) {
-    if (category == "nail") {
-        return <i className="fa-regular fa-hand"></i>;
-    } else {
-        return <i className="fa-regular fa-face-grin-beam"></i>;
-    }
+    if (category == "manicure & pedicure") {
+        return <i class="fa-solid fa-hand-point-up"></i>;
+    } else if (category == "laser service") {
+        return <i class="fa-solid fa-barcode"></i>;
+    }  else if (category == "gluta" || category == "gluta push package" || category == "gluta drip package") {
+        return <i class="fa-solid fa-syringe"></i>;
+    }  else if (category == "foot spa") {
+        return <i class="fa-solid fa-spa"></i>;
+    }  else if (category == "facial service") {
+        return <i class="fa-solid fa-face-grin-hearts"></i>;
+    }  else if (category == "eye lashes") {
+        return <i class="fa-solid fa-eye"></i>;
+    }  else if (category == "wax service") {
+        return <i class="fa-solid fa-child-reaching"></i>;
+    }  else {
+        return <i class="fa-solid fa-store"></i>;
+    };
 }
 
 export default function ServiceCatalogue() {
@@ -84,10 +100,10 @@ export default function ServiceCatalogue() {
     return  (
         <>
             <h1 className="text-center">Service Catalogues</h1>
-            <div className="container-sm text-bg-dark p-1 hstack gap-3">
-                <a href="/create" className="text-warning ms-auto">Create New Service</a>
+            <div className="container-sm text-bg-dark p-1 hstack gap-3 rounded-pill shadow-lg mb-2 sticky-top">
+                <a href="/create" className="btn btn-outline-warning ms-auto rounded-pill">Create New Service</a>
             </div>
-            <div className="container-sm text-bg-light p-1">
+            <div className="container-sm p-2 shadow rounded-3">
                 <div className="row align-items-start">
                     {serviceCatalogues()}
                 </div>

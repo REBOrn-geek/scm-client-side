@@ -7,7 +7,7 @@ export default function ServiceCreation() {
     const [form, setForm] = useState({
         name: "",
         category: "",
-        servicedBy: "employee0",
+        servicedBy: "anjanette",
         price: "",
         availability: "Unavailable",
         description: "",
@@ -72,6 +72,7 @@ export default function ServiceCreation() {
     async function onSubmit(e){  
         e.preventDefault();
         const catalogue = { ...form };
+        console.log(catalogue);
         const { id, ...newCatalogue } = catalogue;
         try {
             let response;
@@ -156,20 +157,26 @@ export default function ServiceCreation() {
                         {/* Service Category */}
                         <select id="category" name="category" className="form-select" aria-label="Default select example" value={form.category}  onChange={(e) => updateForm({ category: e.target.value})}>
                             {/* <option selected>Category</option> */}
-                            <option value="nail">nail</option>
-                            <option value="hair">hair</option>
-                            <option value="face">face</option>
-                            <option value="lips">lips</option>
-                            <option value="skin">skin</option>
+                            <option value="eye lashes">Eye Lashes</option>
+                            <option value="facial service">Facial Service</option>
+                            <option value="foot spa">Foot Spa</option>
+                            <option value="gluta">Gluta</option>
+                            <option value="gluta drip package">Gluta Drip Package</option>
+                            <option value="gluta push package">Gluta Push Package</option>
+                            <option value="laser service">Laser Service</option>
+                            <option value="manicure & pedicure">Manicure & Pedicure</option>
+                            <option value="wax service">Wax Service</option>
                         </select>
 
                         {/* Staff Available */}
                         <select id="servicedBy" name="servicedBy" className="form-select" aria-label="Default select example" value={form.servicedBy} onChange={(e) => updateForm({ servicedBy: e.target.value})}>
                             {/* <option selected>Staff</option> */}
-                            <option value="employee0">employee0</option>
-                            <option value="employee1">employee1</option>
-                            <option value="employee2">employee2</option>
-                            <option value="employee3">employee3</option>
+                            <option value="anjanette">Anjanette</option>
+                            <option value="beverly">Beverly</option>
+                            <option value="jung-jung">Jung-jung</option>
+                            <option value="laling">Laling</option>
+                            <option value="may-may">May-may</option>
+                            <option value="patricia">Patricia</option>
                         </select>
                     </div>
                     {/* Service Description */}
