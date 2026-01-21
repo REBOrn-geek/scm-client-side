@@ -73,8 +73,6 @@ export default function ServiceCreation() {
         e.preventDefault();
         const catalogue = { ...form };
         const { id, ...newCatalogue } = catalogue;
-        console.log(newCatalogue);
-        //const id = params.id?.toString() ||  undefined;
         try {
             let response;
             if (isNew) {                
@@ -112,13 +110,13 @@ export default function ServiceCreation() {
             <h1 className="text-center mb-3">Service {formPage}</h1>
             <form onSubmit={onSubmit}>
                 <div className="container-sm text-bg-light p-2 hstack">
-                    {/* Service Availability */}
-                    <div className="form-check form-switch">
-                        <input className="form-check-input" type="checkbox" role="switch" id="availability" name="availability" value={form.availability} onClick={changeStatus} checked={statusBut}/>
-                    </div>                     
+                    {/* Service Availability */}                     
                     <label className="form-check-label pe-2 ms-auto" htmlFor="availability">
                         {form.availability}
-                    </label>               
+                    </label>  
+                    <div className="form-check form-switch">
+                        <input className="form-check-input" type="checkbox" role="switch" id="availability" name="availability" value={form.availability} onClick={changeStatus} checked={statusBut}/>
+                    </div>             
                 </div>
                 <div className="container-sm text-bg-dark p-2 hstack gap-2 border-warning border-5 rounded-3">
                     {/* Service Name */}
@@ -160,16 +158,6 @@ export default function ServiceCreation() {
                     <Link className="btn btn-outline-warning ms-auto rounded-pill" to={`/`}>Cancel</Link>
                     <input type="submit" className="btn btn-outline-success rounded-pill" value={formPage}/>
                     {/* <button type="button" className="btn btn-outline-success rounded-pill" onClick={onCreate}>Create</button> */}
-                </div>
-                <div>
-                    <ul>
-                        <li>{form.name}</li>
-                        <li>₱ {form.price}</li>
-                        <li>{form.category}</li>
-                        <li>{form.servicedBy}</li>
-                        <li>{form.description}</li>
-                        <li>{params.id}</li>
-                    </ul>                    
                 </div>
             </form>
         </>
