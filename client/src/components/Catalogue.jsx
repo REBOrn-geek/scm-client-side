@@ -30,12 +30,16 @@ const Catalogue = (props) => (
                 <div className="hstack gap-3 m-0">    
                     <h6 className="text-warning"><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-regular fa-star"></i></h6>            
                     <a href="#" className="btn btn-outline-success ms-auto" hidden><i className="fa-solid fa-cart-plus"></i></a>
-                    <a href="#" className="btn btn-outline-warning ms-auto"><i class="fa-solid fa-user-nurse"></i>&nbsp;{props.catalogue.servicedBy}</a>
+                    <a href="#" className="btn btn-outline-warning ms-auto"><i className="fa-solid fa-user-nurse"></i>&nbsp;{props.catalogue.servicedBy}</a>
                 </div>
             </div>
         </div>
     </div>
 );
+
+// const Staff = (props) =>(
+//     <li className="list-group-item" id={props}>{props}</li>
+// );
 
 function serviceStatus(status, name) {
     if (status !== "Available") {
@@ -47,21 +51,21 @@ function serviceStatus(status, name) {
 
 function categoryIcon(category) {
     if (category == "manicure & pedicure") {
-        return <i class="fa-solid fa-hand-point-up"></i>;
+        return <i className="fa-solid fa-hand-point-up"></i>;
     } else if (category == "laser service") {
-        return <i class="fa-solid fa-barcode"></i>;
+        return <i className="fa-solid fa-barcode"></i>;
     }  else if (category == "gluta" || category == "gluta push package" || category == "gluta drip package") {
-        return <i class="fa-solid fa-syringe"></i>;
+        return <i className="fa-solid fa-syringe"></i>;
     }  else if (category == "foot spa") {
-        return <i class="fa-solid fa-spa"></i>;
+        return <i className="fa-solid fa-spa"></i>;
     }  else if (category == "facial service") {
-        return <i class="fa-solid fa-face-grin-hearts"></i>;
+        return <i className="fa-solid fa-face-grin-hearts"></i>;
     }  else if (category == "eye lashes") {
-        return <i class="fa-solid fa-eye"></i>;
+        return <i className="fa-solid fa-eye"></i>;
     }  else if (category == "wax service") {
-        return <i class="fa-solid fa-child-reaching"></i>;
+        return <i className="fa-solid fa-child-reaching"></i>;
     }  else {
-        return <i class="fa-solid fa-store"></i>;
+        return <i className="fa-solid fa-store"></i>;
     };
 }
 
@@ -97,6 +101,27 @@ export default function ServiceCatalogue() {
         });
     }
 
+    function categoriesList(){
+        let categories = [...new Set(catalogues.map(n => n.category.toUpperCase()))];
+        console.log(categories);
+        return categories.map((c) => {
+            return (
+                <option value={c.toLowerCase()}>{c}</option>
+            );
+        });
+    }
+
+    function staffList(){
+        let staffs = [...new Set(catalogues.map(n => n.servicedBy.toUpperCase()))];
+        console.log(staffs);
+        return staffs.map((staff) => {
+            return (
+                <option value={staff.toLowerCase()}>{staff}</option>
+                // <li className="list-group-item" id={staff}>{staff}</li>
+            );
+        });
+    }
+
     return  (
         <>
             <h1 className="text-center">Service Catalogues</h1>
@@ -104,6 +129,21 @@ export default function ServiceCatalogue() {
                 <a href="/create" className="btn btn-outline-warning ms-auto rounded-pill">Create New Service</a>
             </div>
             <div className="container-sm p-2 shadow rounded-3">
+                <div className="row align-item-start">
+                    <h3 className="ps-3"><i className="fa-solid fa-filter"></i>&nbsp;Filter</h3>
+                    <div className="p-3 pt-0 gap-2 hstack">
+                        {/* {categoriesList()}                   */}          
+                        <label htmlFor="category">Category</label>              
+                        <select id="category" name="category" className="form-select" aria-label="Categories">
+                            {categoriesList()}
+                        </select>
+                        {/* {staffList()} */}          
+                        <label htmlFor="servicedBy">Staff</label>                            
+                        <select id="servicedBy" name="servicedBy" className="form-select" aria-label="Staff">
+                            {staffList()}
+                        </select>
+                    </div>                    
+                </div>
                 <div className="row align-items-start">
                     {serviceCatalogues()}
                 </div>
