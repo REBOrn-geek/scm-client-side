@@ -18,7 +18,7 @@ const Catalogue = (props) => (
                 <div className="hstack gap-3 m-0">
                     <div className="m-0 p-0 hstack gap-1">
                         <h6>{categoryIcon(props.catalogue.category)}</h6>
-                        <h6 className="strong">{props.catalogue.category}</h6>
+                        <h6 className="strong">{initialUpperCaseEachWord(props.catalogue.category)}</h6>
                     </div>
                     <div className="ms-auto">
                         <h3 className="text-warning">₱&nbsp;{props.catalogue.price}</h3>
@@ -30,16 +30,12 @@ const Catalogue = (props) => (
                 <div className="hstack gap-3 m-0">    
                     <h6 className="text-warning"><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-regular fa-star"></i></h6>            
                     <a href="#" className="btn btn-outline-success ms-auto" hidden><i className="fa-solid fa-cart-plus"></i></a>
-                    <a href="#" className="btn btn-outline-warning ms-auto"><i className="fa-solid fa-user-nurse"></i>&nbsp;{props.catalogue.servicedBy}</a>
+                    <a href="#" className="btn btn-outline-warning ms-auto"><i className="fa-solid fa-user-nurse"></i>&nbsp;{initialUpperCaseEachWord(props.catalogue.servicedBy)}</a>
                 </div>
             </div>
         </div>
     </div>
 );
-
-// const Staff = (props) =>(
-//     <li className="list-group-item" id={props}>{props}</li>
-// );
 
 function serviceStatus(status, name) {
     if (status !== "Available") {
@@ -50,23 +46,32 @@ function serviceStatus(status, name) {
 }
 
 function categoryIcon(category) {
-    if (category == "manicure & pedicure") {
+    if (category === "manicure & pedicure") {
         return <i className="fa-solid fa-hand-point-up"></i>;
-    } else if (category == "laser service") {
+    } else if (category === "laser service") {
         return <i className="fa-solid fa-barcode"></i>;
-    }  else if (category == "gluta" || category == "gluta push package" || category == "gluta drip package") {
+    }  else if (category === "gluta" || category === "gluta push package" || category === "gluta drip package") {
         return <i className="fa-solid fa-syringe"></i>;
-    }  else if (category == "foot spa") {
+    }  else if (category === "foot spa") {
         return <i className="fa-solid fa-spa"></i>;
-    }  else if (category == "facial service") {
+    }  else if (category === "facial service") {
         return <i className="fa-solid fa-face-grin-hearts"></i>;
-    }  else if (category == "eye lashes") {
+    }  else if (category === "eye lashes") {
         return <i className="fa-solid fa-eye"></i>;
-    }  else if (category == "wax service") {
+    }  else if (category === "wax service") {
         return <i className="fa-solid fa-child-reaching"></i>;
     }  else {
         return <i className="fa-solid fa-store"></i>;
     };
+}
+
+function initialUpperCaseEachWord(word){
+    const wordArray = word.split(" ");
+    let result = "";
+    for(let i=0; i<wordArray.length ; i++){
+        result += wordArray[i].charAt(0).toUpperCase() + wordArray[i].slice(1) + " ";
+    };
+    return result;
 }
 
 export default function ServiceCatalogue() {
@@ -85,7 +90,7 @@ export default function ServiceCatalogue() {
         }
         getCatalogues();
         return;
-    }, [catalogues.lenght]);
+    }, [catalogues.length]);
     
     async function deleteService(id){
         await fetch(`http://localhost:3000/v1/services/${id}`, { method: "DELETE"});
@@ -102,22 +107,21 @@ export default function ServiceCatalogue() {
     }
 
     function categoriesList(){
-        let categories = [...new Set(catalogues.map(n => n.category.toUpperCase()))];
-        console.log(categories);
+        let categories = [...new Set(catalogues.map(n => n.category))];
+        // console.log(categories);
         return categories.map((c) => {
             return (
-                <option value={c.toLowerCase()}>{c}</option>
+                <option value={c.toLowerCase()} key={c}>{initialUpperCaseEachWord(c)}</option>
             );
         });
     }
 
     function staffList(){
-        let staffs = [...new Set(catalogues.map(n => n.servicedBy.toUpperCase()))];
-        console.log(staffs);
+        let staffs = [...new Set(catalogues.map(n => n.servicedBy))];
+        // console.log(staffs);
         return staffs.map((staff) => {
             return (
-                <option value={staff.toLowerCase()}>{staff}</option>
-                // <li className="list-group-item" id={staff}>{staff}</li>
+                <option value={staff.toLowerCase()} key={staff}>{initialUpperCaseEachWord(staff)}</option>
             );
         });
     }
