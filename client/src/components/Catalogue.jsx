@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Catalogue = (props) => (
     <div className="col-3">
         <div className="card m-1" key={props.catalogue.id}>
-            <h6>{props.catalogue.id}</h6>
+            {/* <h6>{props.catalogue.id}</h6> */}
             <div className="text-end">
                 <Link   className="btn text-primary m-1 pe-1 border-end rounded-0" to={`/edit/${props.catalogue.id}`}><i className="fa-solid fa-pencil"></i></Link>
                 {/* <a href="#" className="btn text-primary m-1 pe-1 border-end rounded-0"></a> */}
@@ -96,6 +96,7 @@ export default function ServiceCatalogue() {
     const deleteService = async (id) => {
         await fetch(`http://localhost:3000/v1/services/${id}`, { method: "DELETE"});
         setCatalogues(catalogues.filter((rm) => rm.id !== id));
+        alert("Successfully Deleted!");
     }
 
     function serviceCatalogues() {

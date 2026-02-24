@@ -84,6 +84,7 @@ export default function ServiceCreation() {
                     },
                     body: JSON.stringify(catalogue),
                 });
+                alert("Successfully Posted!");
             } else {
                 alert("Successfully Updated!");
                 if(!id) return;
