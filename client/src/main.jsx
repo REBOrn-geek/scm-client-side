@@ -8,6 +8,7 @@ import {
 import App from "./App";
 import Catalogue from "./components/Catalogue";
 import FormCatalogue from "./components/CatalogueForm";
+import LandingPage from "./pages/LandingPage";
 
 import "./index.css";
 
@@ -22,7 +23,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Catalogue />,
+        element: <LandingPage/>,
       },
     ],
   },

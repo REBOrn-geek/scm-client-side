@@ -6,7 +6,7 @@ const App = () => {
   return (
     <>
       <Header />
-      <main className="container-fluid">
+      <main className="m-0 p-0 g-0 bg-light">
         <Outlet />
       </main>
       <Footer />
